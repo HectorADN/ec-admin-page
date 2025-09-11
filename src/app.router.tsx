@@ -5,12 +5,13 @@ import { RegisterPage } from "./auth/pages/register/RegisterPage";
 import { DashboardPage } from "./admin/pages/dashboard/DashboardPage";
 import { AdminProductsPage } from "./admin/pages/products/AdminProductsPage";
 import { AdminProductPage } from "./admin/pages/product/AdminProductPage";
-import { lazy } from "react";
+import AdminLayout from "./admin/layouts/AdminLayout";
+// import { lazy } from "react";
 
 
 // Para no cargar las rutas administrativas si es que no
 // se han logueado los usuarios
-const AdminLayout = lazy(() => import('./admin/layouts/AdminLayout'));
+// const AdminLayout = lazy(() => import('./admin/layouts/AdminLayout'));
 
 export const appRouter = createBrowserRouter([
     // Auth Routes
