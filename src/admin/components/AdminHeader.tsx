@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 export const AdminHeader: React.FC = () => {
 
-  const { user, logout } = useAuthStore();
+  const { authStatus, isAdmin, logout } = useAuthStore();
 
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4 h-18">
@@ -25,7 +25,7 @@ export const AdminHeader: React.FC = () => {
 
         {/* Actions */}
         <div className="flex items-center space-x-4">
-          { !user ? (
+          { authStatus === 'not-authenticated' ? (
             <Link to={'/'}>
               <Button
                 variant="default" size="sm" className="ml-2"
@@ -40,10 +40,19 @@ export const AdminHeader: React.FC = () => {
           >
             Cerrar sesión
           </Button>
-          )
+          )}
 
+          { isAdmin() && (
+            <Link to="/admin">
+            <Button 
+              variant="destructive" size="sm" className='ml-2'
+              type='button'
+            >
+              Admin
+            </Button>
+          </Link>
+          )}
 
-          }
         </div>
       </div>
     </header>

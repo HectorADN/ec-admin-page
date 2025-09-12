@@ -13,7 +13,7 @@ type AuthState = {
     authStatus: AuthStatus;
 
     // Getters o propiedades computadas etc.
-
+    isAdmin: () => boolean;
 
     // Actions y/o funciones
     login: (email:string, password:string) => Promise<boolean>;
@@ -21,11 +21,19 @@ type AuthState = {
     checkAuthStatus: () => Promise<boolean>;
 };
 
-export const useAuthStore = create<AuthState>()((set) => ({
+export const useAuthStore = create<AuthState>()((set,get) => ({
     // Implementacion de properties del AuthStore
     user: null,
     token: null,
     authStatus: 'checking',
+
+
+  // Implementando getter
+    isAdmin: () => {
+      const isAdmin = get().user?.is_admin || false;
+      return isAdmin;
+    },
+
 
     // implementando las actions del AuthStore
     login: async(email: string, password: string) => {
@@ -64,8 +72,9 @@ export const useAuthStore = create<AuthState>()((set) => ({
         });
         return true;
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         set({
             user: undefined,
             token: undefined,
