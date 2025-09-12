@@ -8,6 +8,7 @@ import { RegisterPage } from "./auth/pages/register/RegisterPage";
 import { DashboardPage } from "./admin/pages/dashboard/DashboardPage";
 import { AdminProductsPage } from "./admin/pages/products/AdminProductsPage";
 import { AdminProductPage } from "./admin/pages/product/AdminProductPage";
+import { ProductoPage } from "./admin/pages/product/ProductoPage";
 // import AdminLayout from "./admin/layouts/AdminLayout";
 
 
@@ -52,6 +53,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'products/:id',
                 element: <AdminProductPage />
+            },
+            {
+                path: 'producto/:id',
+                element: <ProductoPage />
             }
         ],
     },

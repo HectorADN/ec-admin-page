@@ -1,4 +1,5 @@
 import { AdminTitle } from "@/admin/components/AdminTitle";
+import { useProducts } from "@/admin/hooks/useProducts";
 import { Button } from "@/components/ui/button";
 import { Table ,TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { PlusIcon } from "lucide-react";
@@ -6,6 +7,10 @@ import { Link } from "react-router";
 
 
 export const AdminProductsPage = () => {
+
+  const { data } = useProducts();
+  console.log(data);
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -30,8 +35,8 @@ export const AdminProductsPage = () => {
         
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Producto</TableHead>
-              <TableHead>Categoría</TableHead>
+              <TableHead>Id</TableHead>
+              <TableHead>Producto</TableHead>
               <TableHead>Disponible</TableHead>
               
               <TableHead>Imagen</TableHead>
@@ -43,25 +48,32 @@ export const AdminProductsPage = () => {
           </TableHeader>
 
           <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">101</TableCell>
-              <TableCell>Aceituna Nat S. Extra</TableCell>
-              <TableCell>Disponible</TableCell>
+
+             {
+              data?.data.map( product => (
+                (<TableRow key={product.id}>
+              <TableCell className="font-medium">{product.id}</TableCell>
+              <TableCell>{product.nombre}</TableCell>
+              <TableCell>{product.disponible}</TableCell>
 
               <TableCell>
                 <img 
-                  src="/img/aceitunaconamargo.jpg"                   
-                  alt="Aceituna natural con amargo"
+                  src={product.default_imagen}                   
+                  alt={product.nombre}
                   className="w-20 h-20 object-cover rounded-md"
                  />
               </TableCell>
-              <TableCell>Todo el año</TableCell>              
+              <TableCell>{product.temporada}</TableCell>              
               <TableCell className="text-right">$10.000</TableCell>
               
               <TableCell>
-                <Link to={'/admin/products/1002'} >Ver</Link>
+                <Link to={`/admin/products/${product.id}`} >Ver</Link>
               </TableCell>
-            </TableRow>
+            </TableRow>)
+              ))              
+             } 
+            
+
           </TableBody>
 
       </Table>
