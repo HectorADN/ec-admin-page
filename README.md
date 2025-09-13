@@ -11,12 +11,12 @@ git clone https://github.com/HectorADN/ec-admin-page.git
 git pull https://github.com/HectorADN/ec-admin-page.git
 
 git add .
-git commit -m "SeccionAdmin-01-Forms"
+git commit -m "SeccionAdmin-02-Forms"
 git branch -M main
 git push -u origin main
 
 
-Curso - Video 300 - Finalizado
+Curso - Video 310 - Finalizado
 
 
 Se instala sonner para notificaciones con:

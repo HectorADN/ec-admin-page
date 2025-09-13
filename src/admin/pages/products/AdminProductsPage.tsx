@@ -1,15 +1,19 @@
 import { AdminTitle } from "@/admin/components/AdminTitle";
 import { useProducts } from "@/admin/hooks/useProducts";
+import { CustomFullScreenLoading } from "@/components/custom/CustomFullScreenLoading";
 import { Button } from "@/components/ui/button";
 import { Table ,TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { PlusIcon } from "lucide-react";
+import { PencilIcon, PlusIcon } from "lucide-react";
 import { Link } from "react-router";
+import { currencyFormatter } from '../../../lib/currency-formatter';
 
 
 export const AdminProductsPage = () => {
 
-  const { data } = useProducts();
-  console.log(data);
+  const { data, isLoading } = useProducts();
+  const standartPrice = 7500;
+  
+  if ( isLoading ) return <CustomFullScreenLoading />;
 
   return (
     <>
@@ -35,9 +39,8 @@ export const AdminProductsPage = () => {
         
           <TableHeader>
             <TableRow>
-              <TableHead>Id</TableHead>
               <TableHead>Producto</TableHead>
-              <TableHead>Disponible</TableHead>
+              <TableHead>Categoria</TableHead>
               
               <TableHead>Imagen</TableHead>
               <TableHead>Temporada</TableHead>
@@ -52,9 +55,20 @@ export const AdminProductsPage = () => {
              {
               data?.data.map( product => (
                 (<TableRow key={product.id}>
-              <TableCell className="font-medium">{product.id}</TableCell>
-              <TableCell>{product.nombre}</TableCell>
-              <TableCell>{product.disponible}</TableCell>
+              <TableCell className="font-bold">
+                <Link to={`/admin/products/${product.id}`}
+                  className="hover:text-gray-600 underline"
+                >
+                        {product.id} - {product.nombre} 
+                </Link>
+                        
+                        <br />
+                        { product.disponible 
+                          ? (<span className="text-green-500 font-normal">Disponible</span>)
+                          : (<span className="text-red-500 font-normal">No Disponible</span>)
+                        }         
+              </TableCell>
+              <TableCell>{product.tipo}</TableCell>
 
               <TableCell>
                 <img 
@@ -64,11 +78,16 @@ export const AdminProductsPage = () => {
                  />
               </TableCell>
               <TableCell>{product.temporada}</TableCell>              
-              <TableCell className="text-right">$10.000</TableCell>
+              <TableCell className="text-right">{currencyFormatter(standartPrice)}</TableCell>
               
               <TableCell>
-                <Link to={`/admin/products/${product.id}`} >Ver</Link>
+                {/* <Link to={`/admin/products/${product.id}`} >Ver</Link> */}
+                <Link to={`/admin/products/${product.id}`}                  
+                >
+                  <PencilIcon className="w-4 h-4 text-green-600" />
+                </Link>
               </TableCell>
+
             </TableRow>)
               ))              
              } 
