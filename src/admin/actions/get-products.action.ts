@@ -12,6 +12,8 @@ export const getProductsAction = async(): Promise<ProductsResponse> => {
         default_imagen: `${import.meta.env.VITE_IMAGES_URL}${product.default_imagen}`
     }));
 
+    // console.log(productsWithImageUrls);
+
     return {
         ...data,
         data: productsWithImageUrls
