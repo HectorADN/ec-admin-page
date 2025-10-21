@@ -64,7 +64,7 @@ export const AdminProductsPage = () => {
                         
                         <br />
                         { product.disponible 
-                          ? (<span className="text-green-500 font-normal">Disponible</span>)
+                          ? (<span className="text-green-600 font-normal">Disponible</span>)
                           : (<span className="text-red-500 font-normal">No Disponible</span>)
                         }         
               </TableCell>

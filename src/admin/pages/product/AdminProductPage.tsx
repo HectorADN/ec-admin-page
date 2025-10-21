@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
 import { useProduct } from '@/admin/hooks/useProduct';
 import { CustomFullScreenLoading } from '@/components/custom/CustomFullScreenLoading';
+import { ItemsVentaOfProduct } from './ui/ItemsVentaOfProduct';
 
 interface Product {
   id: string;
@@ -472,6 +473,11 @@ export const AdminProductPage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='flex justify-between items-center'>
+        {/* <ItemsVentaOfProduct 
+            id=}
+        /> */}
       </div>
     </>
   );
