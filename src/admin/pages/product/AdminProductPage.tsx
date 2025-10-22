@@ -32,7 +32,7 @@ export const AdminProductPage = () => {
   // console.log(id);
 
   const { isLoading, isError, data: product2 } = useProduct(id || '');
-  console.log( {isLoading, product2} );
+  // console.log( {isLoading, product2} );
 
 
 
@@ -170,7 +170,7 @@ export const AdminProductPage = () => {
                   </label>
                   <input
                     type="text"
-                    value={product.title}
+                    value={ product.title }
                     onChange={(e) => handleInputChange('title', e.target.value)}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     placeholder="Título del producto"
@@ -472,13 +472,19 @@ export const AdminProductPage = () => {
               </div>
             </div>
           </div>
+
+          <div className='className="bg-white rounded-xl shadow-lg border border-slate-200 p-6'>
+            <h2 className="text-xl font-semibold text-slate-800 mb-6">
+              Items del producto
+            </h2>
+            <ItemsVentaOfProduct 
+              id={id ? id : 'new'}
+            />
+          </div>
+
         </div>
-      </div>
-      <div className='flex justify-between items-center'>
-        {/* <ItemsVentaOfProduct 
-            id=}
-        /> */}
-      </div>
+      </div>      
+
     </>
   );
 };
