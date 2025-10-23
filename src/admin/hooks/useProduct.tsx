@@ -11,5 +11,7 @@ export const useProduct = (id: string) => {
         // enabled: !!id, // No se hace la peticion hasta que el id exista
     });
 
+    //TODO: Mutacion
+
     return { ...query };
 }

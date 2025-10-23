@@ -26,15 +26,11 @@ interface Product {
 
 export const AdminProductPage = () => {
 
-
-
   const { id } = useParams();
-  // console.log(id);
 
   const { isLoading, isError, data: product2 } = useProduct(id || '');
-  // console.log( {isLoading, product2} );
 
-
+  console.log({isLoading, product2});
 
   const productTitle = id === 'new' ? 'Nuevo producto' : 'Editar producto';
   const productSubtitle =
@@ -68,7 +64,7 @@ export const AdminProductPage = () => {
 
 
   // en caso de error : Redireccionar a '/admin/products'
-  if ( isError ) return <Navigate to="" />;
+  if ( isError ) return <Navigate to="/admin/products" />;
   if ( isLoading ) return <CustomFullScreenLoading />;
 
 
