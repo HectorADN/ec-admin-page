@@ -12,6 +12,7 @@ import { ProductoPage } from "./admin/pages/product/ProductoPage";
 import { AdminRoute } from "./components/routes/ProtectedRoutes";
 import { AdminUsersPage } from "./admin/pages/users/AdminUsersPage";
 import { AdminSuppliersPage } from "./admin/pages/supplies/AdminSuppliersPage";
+import { AdminEmpresaPagosPage } from "./admin/pages/empresapagos/AdminEmpresaPagosPage";
 // import AdminLayout from "./admin/layouts/AdminLayout";
 
 
@@ -72,6 +73,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'suppliers',
                 element: <AdminSuppliersPage />
+            },
+            {
+                path: 'mediospagos',
+                element: <AdminEmpresaPagosPage />
             },
         ],
     },
