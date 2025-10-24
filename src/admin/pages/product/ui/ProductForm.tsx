@@ -1,14 +1,14 @@
 import { AdminTitle } from "@/admin/components/AdminTitle";
 import { Button } from "@/components/ui/button";
 import { X, SaveAll, Tag, Plus, Upload } from "lucide-react";
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 import { ItemsVentaOfProduct } from "./ItemsVentaOfProduct";
 import type { Product } from "@/interfaces/Product.interface";
 
 interface Props {
     title: string;
     subTitle: string,
-    product: Product
+    product: Product,
 };
 
 
@@ -23,7 +23,11 @@ interface Props {
     //     'categorias_id',
     // ];
 
-export const ProductForm = ({title, subTitle, product}: Props) => {
+export const ProductForm = ({title, subTitle, product }: Props) => {
+  
+  console.log('Aqui llega');
+  console.log({product});
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -63,7 +67,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                     // value={ product.nombre }
                     // onChange={(e) => handleInputChange('title', e.target.value)}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                    placeholder="Título del producto"
+                    placeholder="Nombre del producto"
                   />
                 </div>
 
@@ -136,23 +140,23 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
               </h2>
 
               {/* Drag & Drop Zone */}
-              <div
+              {/* <div
                 className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-all duration-200 ${
                   dragActive
                     ? 'border-blue-400 bg-blue-50'
                     : 'border-slate-300 hover:border-slate-400'
                 }`}
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
+                // onDragEnter={handleDrag}
+                // onDragLeave={handleDrag}
+                // onDragOver={handleDrag}
+                // onDrop={handleDrop}
               >
                 <input
                   type="file"
                   multiple
                   accept="image/*"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  onChange={handleFileChange}
+                  // onChange={handleFileChange}
                 />
                 <div className="space-y-4">
                   <Upload className="mx-auto h-12 w-12 text-slate-400" />
@@ -168,7 +172,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                     PNG, JPG, WebP hasta 10MB cada una
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               {/* Current Images */}
               <div className="mt-6 space-y-3">
@@ -176,7 +180,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                   Imágenes actuales
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
-                  {product.images.map((image, index) => (
+                  {/* {product.images.map((image, index) => (
                     <div key={index} className="relative group">
                       <div className="aspect-square bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center">
                         <img
@@ -192,7 +196,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                         {image}
                       </p>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </div>
@@ -217,7 +221,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                   <span className="text-sm font-medium text-slate-700">
                     Inventario
                   </span>
-                  <span
+                  {/* <span
                     className={`px-2 py-1 text-xs font-medium rounded-full ${
                       product.stock > 5
                         ? 'bg-green-100 text-green-800'
@@ -231,7 +235,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                       : product.stock > 0
                       ? 'Bajo stock'
                       : 'Sin stock'}
-                  </span>
+                  </span> */}
                 </div>
 
                 <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
@@ -239,7 +243,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                     Imágenes
                   </span>
                   <span className="text-sm text-slate-600">
-                    {product.images.length} imágenes
+                    {/* {product.images.length} imágenes */}
                   </span>
                 </div>
 
@@ -248,7 +252,7 @@ export const ProductForm = ({title, subTitle, product}: Props) => {
                     Tallas disponibles
                   </span>
                   <span className="text-sm text-slate-600">
-                    {product.sizes.length} tallas
+                    {/* {product.sizes.length} tallas */}
                   </span>
                 </div>
               </div>
