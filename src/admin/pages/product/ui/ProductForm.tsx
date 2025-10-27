@@ -24,9 +24,9 @@ interface Props {
     // ];
 
 export const ProductForm = ({title, subTitle, product }: Props) => {
-  
-  console.log('Aqui llega');
-  console.log({product});
+
+  console.log('ProductFormPage->aqui');
+  console.log(product);
 
   return (
     <>
@@ -64,7 +64,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
                   </label>
                   <input
                     type="text"
-                    // value={ product.nombre }
+                    value={ product.nombre }
                     // onChange={(e) => handleInputChange('title', e.target.value)}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     placeholder="Nombre del producto"
@@ -263,9 +263,9 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
             <h2 className="text-xl font-semibold text-slate-800 mb-6">
               Items del producto
             </h2>
-            <ItemsVentaOfProduct 
+            {/* <ItemsVentaOfProduct 
               id={product.id}
-            />
+            /> */}
           </div>
 
         </div>

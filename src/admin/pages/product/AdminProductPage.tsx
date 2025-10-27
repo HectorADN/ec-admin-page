@@ -20,7 +20,6 @@ export const AdminProductPage = () => {
   const { isLoading, isError, data } = useProduct(id || '');
 
   console.log({isLoading, data});
-  const product = data?.data[0];
 
   const productTitle = id === 'new' ? 'Nuevo producto' : 'Editar producto';
   const productSubtitle =
@@ -30,15 +29,19 @@ export const AdminProductPage = () => {
 
 
   const [newTag, setNewTag] = useState('');
-  const [dragActive, setDragActive] = useState(false);
+  // const [dragActive, setDragActive] = useState(false);
 
-  const availableSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+  // const availableSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
 
   // en caso de error : Redireccionar a '/admin/products'
   if ( isError ) return <Navigate to="/admin/products" />;
   if ( isLoading ) return <CustomFullScreenLoading />;
+  if ( !data ) return <CustomFullScreenLoading />;
   // if ( !product ) return <Navigate to="/admin/products" />;
+  if ( !data ) return <Navigate to="/admin/products" />;
+
+  const product = data.data[0];
   
 
 
@@ -101,6 +104,9 @@ export const AdminProductPage = () => {
     const files = e.target.files;
     console.log(files);
   };
+
+  console.log('Enviando Producto al Form Como:');
+  console.log(product);
 
   return <ProductForm 
     title={productTitle} 

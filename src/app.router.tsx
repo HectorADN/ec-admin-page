@@ -8,7 +8,6 @@ import { RegisterPage } from "./auth/pages/register/RegisterPage";
 import { DashboardPage } from "./admin/pages/dashboard/DashboardPage";
 import { AdminProductsPage } from "./admin/pages/products/AdminProductsPage";
 import { AdminProductPage } from "./admin/pages/product/AdminProductPage";
-import { ProductoPage } from "./admin/pages/product/ProductoPage";
 import { AdminRoute } from "./components/routes/ProtectedRoutes";
 import { AdminUsersPage } from "./admin/pages/users/AdminUsersPage";
 import { AdminSuppliersPage } from "./admin/pages/supplies/AdminSuppliersPage";
@@ -61,10 +60,6 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'products/:id',
                 element: <AdminProductPage />
-            },
-            {
-                path: 'producto/:id',
-                element: <ProductoPage />
             },
             {
                 path: 'users',
