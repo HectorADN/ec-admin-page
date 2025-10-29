@@ -35,6 +35,7 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
   const menuItems = [
     { icon: Home, label: 'Dashboard', to: '/admin' },
     { icon: BarChart3, label: 'Ventas' },
+    { icon: Barcode, label: 'Categorías', to: '/admin/categories' },
     { icon: Barcode, label: 'Productos', to: '/admin/products' },
     { icon: Users, label: 'Usuarios', to: '/admin/users' },
     { icon: Users, label: 'Proveedores', to: '/admin/suppliers' },
@@ -45,7 +46,6 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
     { icon: Settings, label: 'Ajustes' },
     { icon: HelpCircle, label: 'Ayuda' },
   ];
-
 
   const isActiveRoute = ( to: string ) => {
     // TODO: ajustarlo cuando estemos en la pantalla de producto

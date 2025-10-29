@@ -10,20 +10,15 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
 
     if ( id === 'new' ) {
         return {
-            "message": "nuevo producto",
-            "status": 200,
-            "error": false,
-            "data": 
-                {
-                    "id": -10,
-                    "nombre": "",
-                    "unidad": "",
-                    "tipo": "",
-                    "stock_minimo": 0,
-                    "disponible": false,
-                    "temporada": "",
-                    "default_imagen": "",
-                }
+            "id": '',
+            "nombre": "",
+            "nombre_corto": "",
+            "unidad": "",
+            "tipo": "",
+            "stock_minimo": 0,
+            "disponible": false,
+            "temporada": "",
+            "default_imagen": "",
         } as unknown as Product;
     }
 
@@ -32,9 +27,9 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
     return data ;
 }
 
-
 // "id": 101,
 // "nombre": "Aceituna S. Extra Negra",
+// "nombre_corto": "Super Extra Negra",
 // "unidad": "kg",
 // "tipo": "Aceitunas",
 // "stock_minimo": "120.000",

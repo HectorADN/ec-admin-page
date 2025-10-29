@@ -12,6 +12,9 @@ import { AdminRoute } from "./components/routes/ProtectedRoutes";
 import { AdminUsersPage } from "./admin/pages/users/AdminUsersPage";
 import { AdminSuppliersPage } from "./admin/pages/supplies/AdminSuppliersPage";
 import { AdminEmpresaPagosPage } from "./admin/pages/empresapagos/AdminEmpresaPagosPage";
+import { AdminCategoriesPage } from "./admin/pages/categories/AdminCategoriesPage";
+import { AdminCategoryPage } from "./admin/pages/categories/category/AdminCategoryPage";
+import { AdminSupplierPage } from "./admin/pages/supplies/supplier/AdminSupplierPage";
 // import AdminLayout from "./admin/layouts/AdminLayout";
 
 
@@ -54,6 +57,14 @@ export const appRouter = createBrowserRouter([
                 element: <DashboardPage />
             },
             {
+                path: 'categories',
+                element: <AdminCategoriesPage />
+            },
+            {
+                path: 'categories/:id',
+                element: <AdminCategoryPage />
+            },
+            {
                 path: 'products',
                 element: <AdminProductsPage />
             },
@@ -68,6 +79,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'suppliers',
                 element: <AdminSuppliersPage />
+            },
+            {
+                path: 'suppliers/:id',
+                element: <AdminSupplierPage />
             },
             {
                 path: 'mediospagos',

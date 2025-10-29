@@ -6,37 +6,30 @@ import { AdminTitle } from "@/admin/components/AdminTitle";
 import { Button } from "@/components/ui/button";
 import { X, SaveAll, Tag, Upload, Plus } from "lucide-react";
 import { Form, Link, Navigate } from "react-router";
-import { ItemsVentaOfProduct } from "./ItemsVentaOfProduct";
-import type { Product } from "@/interfaces/Product.interface";
-import { useCategories } from "@/admin/hooks/useCategories";
-import { CustomFullScreenLoading } from "@/components/custom/CustomFullScreenLoading";
 import { cn } from "@/lib/utils";
+import type { Supplier } from "@/interfaces/Supplier.interface";
 
 interface Props {
     title: string;
     subTitle: string,
-    product: Product,
+    supplier: Supplier,
 
     // Methods
 };
 
-// protected $fillable = [
-//     'id',
-//     'nombre',
-//     'nombre_corto',
-//     'tipo',
-//     'unidad',
-//     'stock_minimo',
-//     'disponible',
-//     'temporada',
-//     'default_imagen',
-//     'categorias_id',
-//  ];
+// api Supplier = [
+//     'nombre',    *
+//     'giro',      *
+//     'rut',       *
+//     'contacto',  *
+//     'direccion', *
+//     'ciudad',    *
+//     'fono',      *
+//     'logo',
+// ];
 
-export const ProductForm = ({title, subTitle, product }: Props) => {
+export const SupplierForm = ({title, subTitle, supplier }: Props) => {
 
-  const { isLoading, isError, data } = useCategories();
-  const categories = data?.data;
 
   const [dragActive, setDragActive] = useState(false);
   const { 
@@ -47,22 +40,10 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
     setValue,
     watch,
    } = useForm({
-    defaultValues: product
+    defaultValues: supplier
   });
 
-  const isProductDisponible = watch('disponible');
-
-
-    // const handleInputChange = (field: keyof Product, value: string | number) => {
-    //   setProduct((prev) => ({ ...prev, [field]: value }));
-    // };
-
-    const toggleDisponible = () => {
-      setValue('disponible', !getValues('disponible'));
-    }
-
-
-    const handleDrag = (e: React.DragEvent) => {
+  const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === 'dragenter' || e.type === 'dragover') {
@@ -85,12 +66,9 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
     console.log(files);
   };
 
-  const onSubmit = (productLike: Product) => {
+  const onSubmit = (productLike: Supplier) => {
     console.log('onSubmit', productLike);
   }
-
-  if ( isError ) return <Navigate to="/admin/products" />;
-  if ( isLoading ) return <CustomFullScreenLoading />;
 
 
   return (
@@ -99,7 +77,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
         <AdminTitle title={title} subtitle={subTitle} />
         <div className="flex justify-end mb-10 gap-4">
           <Button variant="outline">
-            <Link to="/admin/products" className="flex items-center gap-2">
+            <Link to="/admin/suppliers" className="flex items-center gap-2">
               <X className="w-4 h-4" />
               Cancelar
             </Link>
@@ -119,38 +97,16 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
             {/* Basic Information */}
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
               <h2 className="text-xl font-semibold text-slate-800 mb-6">
-                Información del producto
+                Información del proveedor
               </h2>
 
               <div className="space-y-6">
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Categoría del producto
-                  </label>
-                  <select
-                    {...register('categorias_id')}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  >
-                    {
-                      categories!.map((category) => (
-                      <option 
-                        key={category.id} 
-                        value={category.id}
-                        selected={category.id === product.categorias_id}
-                        >
-                          {category.nombre}
-                      </option>)
-                    )
-                    }
-
-                  </select>
-                </div>
 
                 {/* Campo Nombre */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Nombre del producto
+                    Nombre del proveedor
                   </label>
                   <input
                     type="text"
@@ -164,7 +120,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
                         'bg-red-100': errors.nombre,
                       }
                     )}
-                    placeholder="Nombre del producto"
+                    placeholder="Nombre del proveedor"
                   />
                   {
                     errors.nombre && (
@@ -175,164 +131,176 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
                   }
                 </div>
                 
-                {/* Campo Nombre corto */}
+                {/* Campo Giro Proveedor */}
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Nombre corto del producto
+                    Giro del proveedor
                   </label>
                   <input
                     type="text"
-                    {...register('nombre_corto',{
+                    {...register('giro',{
                       required: true,
                       minLength: 3
                     })}
                     className={cn(
                       'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
                       {
-                        'bg-red-100': errors.nombre_corto,
+                        'bg-red-100': errors.giro,
                       }
                     )}
-                    placeholder="Nombre corto"
+                    placeholder="Giro"
                   />
                   {
                     errors.nombre && (
                       <p className="text-red-500 text-sm">
-                        El nombre corto es requerido
+                        El giro es requerido
                       </p>
                     )
                   }
                 </div>
 
+                {/* Campo Contacto Proveedor */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Nombre de contacto del proveedor
+                  </label>
+                  <input
+                    type="text"
+                    {...register('contacto',{
+                      required: true,
+                      minLength: 3
+                    })}
+                    className={cn(
+                      'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
+                      {
+                        'bg-red-100': errors.contacto,
+                      }
+                    )}
+                    placeholder="Contacto"
+                  />
+                  {
+                    errors.contacto && (
+                      <p className="text-red-500 text-sm">
+                        El nombre de contacto del proveedor es requerido
+                      </p>
+                    )
+                  }
+                </div>
 
+                {/* Campo Dirtección del Proveedor */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Dirección del proveedor
+                  </label>
+                  <input
+                    type="text"
+                    {...register('direccion',{
+                      required: true,
+                      minLength: 3
+                    })}
+                    className={cn(
+                      'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
+                      {
+                        'bg-red-100': errors.direccion,
+                      }
+                    )}
+                    placeholder="Dirección"
+                  />
+                  {
+                    errors.direccion && (
+                      <p className="text-red-500 text-sm">
+                        La dirección del proveedor es requerido
+                      </p>
+                    )
+                  }
+                </div>
+
+                {/* Grupo de Campos */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    {/* Rut del Proveedor */}
                     <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Unidad del producto
+                            Rut
                         </label>
                         <input
                             type="text"
-                            {...register('unidad',{
+                            {...register('rut',{
                               required: true
                             })}
                             className={cn(
                               'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
                               {
-                                'bg-red-100': errors.unidad,
+                                'bg-red-100': errors.rut,
                               }
                             )}
                             placeholder="Unidad del producto"
                         />
                         {
-                          errors.unidad && (
+                          errors.rut && (
                             <p className="text-red-500 text-sm">
-                              La unidad es requerida
+                              El rut del proveedor es requerido.
                             </p>
                           )
                         }
                     </div>
+
+                    {/* Ciudad del proveedor */}
                     <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Tipo del producto (Opcional)
+                            Ciudad
                         </label>
                         <input
                             type="text"
-                            {...register('tipo',{
+                            {...register('ciudad',{
                               minLength: 3,
                             })}
                               className={cn(
                               'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
                               {
-                                'bg-red-100': errors.tipo,
+                                'bg-red-100': errors.ciudad,
                               }
                             )}                            
-                            placeholder="Tipo del producto"
+                            placeholder="Ciudad del proveedor"
                         />
                         {
-                          errors.tipo && (
+                          errors.ciudad && (
                             <p className="text-red-500 text-sm">
-                              El Tipo es requerido
+                              La ciudad es requerida
                             </p>
                           )
                         }
                     </div>
+
+                    {/* Fono Proveedor */}
                     <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Temporada del producto
+                            Fono contacto proveedor
                         </label>
                         <input
                             type="text"
-                            {...register('temporada',{
+                            {...register('fono',{
                               required: true,
                             })}
                             className={cn(
                               'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
                               {
-                                'bg-red-100': errors.temporada,
+                                'bg-red-100': errors.fono,
                               }
                             )}
                             placeholder="Temporada del producto"
                         />
                         {
-                          errors.temporada && (
+                          errors.fono && (
                             <p className="text-red-500 text-sm">
-                              La temporada es requerida
+                              El fono de contacto es requerido
                             </p>
                           )
                         }
                     </div>
 
-                    {/* TODO: */}
 
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                      Stock mínimo (según las unidades)
-                    </label>
-                    <input
-                      type="number"
-                      {...register('stock_minimo',{
-                        required: true,
-                        min: 1,
-                      })}
-
-                      className={cn(
-                              'w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200',
-                              {
-                                'bg-red-100': errors.stock_minimo,
-                              }
-                            )}
-                      placeholder="Stock mínimo del producto"
-                    />
-                      {
-                      errors.stock_minimo && (
-                        <p className="text-red-500 text-sm">
-                          El stock mínimo debe ser mayor a 0
-                        </p>
-                        )
-                      }
-                  </div>
                 </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Disponibilidad del producto
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => toggleDisponible()}
-                      disabled={ product.disponible }
-                      className={`px-4 py-1 w-full rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
-                        isProductDisponible
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-red-200 text-red-700'
-                      }`}
-                    >
-                      {
-                        isProductDisponible
-                        ? 'Disponible'
-                        : 'No disponible'
-                      }
-                    </button>
-                  </div>
                 
               </div>
             </div>
@@ -342,7 +310,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
             {/* Product Images */}
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
               <h2 className="text-xl font-semibold text-slate-800 mb-6">
-                Imágenes del producto
+                Logo del proveedor
               </h2>
 
               {/* Drag & Drop Zone */}
@@ -383,7 +351,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
               {/* Current Images */}
               <div className="mt-6 space-y-3">
                 <h3 className="text-sm font-medium text-slate-700">
-                  Imágenes actuales
+                  Imágen actual
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {/* {product.images.map((image, index) => (
@@ -407,56 +375,7 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
               </div>
             </div>
 
-            {/* Product Status */}
-            <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
-              <h2 className="text-xl font-semibold text-slate-800 mb-6">
-                Estado del producto
-              </h2>
-
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm font-medium text-slate-700">
-                    Estado
-                  </span>
-                  <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                    Activo
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                  <span className="text-sm font-medium text-slate-700">
-                    Inventario
-                  </span>
-                  {/* <span
-                    className={`px-2 py-1 text-xs font-medium rounded-full ${
-                      product.stock > 5
-                        ? 'bg-green-100 text-green-800'
-                        : product.stock > 0
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {product.stock > 5
-                      ? 'En stock'
-                      : product.stock > 0
-                      ? 'Bajo stock'
-                      : 'Sin stock'}
-                  </span> */}
-                </div>
-
-              </div>
-            </div>
           </div>
-
-          <div className='className="bg-white rounded-xl shadow-lg border border-slate-200 p-6'>
-            <h2 className="text-xl font-semibold text-slate-800 mb-6">
-              Items del producto
-            </h2>
-            <ItemsVentaOfProduct 
-              id={product.id}
-            />
-          </div>
-
         </div>
       </div>      
 
