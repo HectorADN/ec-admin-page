@@ -1,9 +1,10 @@
 
 import { ecApi } from "@/api/ecApi";
-import type { ProductsResponse } from "@/interfaces/ProductsResponse";
+import type { Product } from "@/interfaces/Product.interface";
+// import type { ProductsResponse } from "@/interfaces/ProductsResponse";
 
 
-export const getProductByIdAction = async (id: string ): Promise<ProductsResponse> => {
+export const getProductByIdAction = async (id: string ): Promise<Product> => {
 
     if ( !id ) throw new Error('Id es requerido');
 
@@ -23,10 +24,10 @@ export const getProductByIdAction = async (id: string ): Promise<ProductsRespons
                     "temporada": "",
                     "default_imagen": "",
                 }
-        } as unknown as ProductsResponse;
+        } as unknown as Product;
     }
 
-    const { data } = await ecApi.get<ProductsResponse>(`/admin/productos/${id}`);
+    const { data } = await ecApi.get<Product>(`/admin/producto/${id}`);
     // const default_imagen = import.meta.env.VITE_IMAGES_URL+data.data[0].default_imagen;
     return data ;
 }
