@@ -1,7 +1,7 @@
 
 
 export interface EmpresaPagos {
-    id:             number;
+    id:             string;
     empresa:        string;
     comision:       number;
     disponible:     boolean;

@@ -23,7 +23,7 @@ export const AdminEmpresaPagosPage = () => {
         />
 
         <div className="flex justify-end mb-10 gap-4">
-          <Link to='/admin/products/new'>
+          <Link to='/admin/mediopago/new'>
             <Button>
               <PlusIcon /> Nuevo medio
             </Button>
@@ -60,7 +60,7 @@ export const AdminEmpresaPagosPage = () => {
                     <TableCell>{mediopago.disponible}</TableCell>
                     <TableCell>
                         {/* <Link to={`/admin/products/${product.id}`} >Ver</Link> */}
-                        <Link to={`/admin/mediospagos/${mediopago.id}`}                  
+                        <Link to={`/admin/mediopago/${mediopago.id}`}                  
                         >
                         <PencilIcon className="w-4 h-4 text-green-600" />
                         </Link>

@@ -15,6 +15,7 @@ import { AdminEmpresaPagosPage } from "./admin/pages/empresapagos/AdminEmpresaPa
 import { AdminCategoriesPage } from "./admin/pages/categories/AdminCategoriesPage";
 import { AdminCategoryPage } from "./admin/pages/categories/category/AdminCategoryPage";
 import { AdminSupplierPage } from "./admin/pages/supplies/supplier/AdminSupplierPage";
+import { AdminEmpresaPagoPage } from "./admin/pages/empresapagos/empresapago/AdminEmpresaPagoPage";
 // import AdminLayout from "./admin/layouts/AdminLayout";
 
 
@@ -87,6 +88,10 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'mediospagos',
                 element: <AdminEmpresaPagosPage />
+            },
+            {
+                path: 'mediopago/:id',
+                element: <AdminEmpresaPagoPage />
             },
         ],
     },

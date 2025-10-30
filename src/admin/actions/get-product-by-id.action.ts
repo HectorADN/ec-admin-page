@@ -1,8 +1,6 @@
 
 import { ecApi } from "@/api/ecApi";
 import type { Product } from "@/interfaces/Product.interface";
-// import type { ProductsResponse } from "@/interfaces/ProductsResponse";
-
 
 export const getProductByIdAction = async (id: string ): Promise<Product> => {
 
@@ -10,7 +8,7 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
 
     if ( id === 'new' ) {
         return {
-            "id": '',
+            // "id": '',
             "nombre": "",
             "nombre_corto": "",
             "unidad": "",
@@ -23,16 +21,6 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
     }
 
     const { data } = await ecApi.get<Product>(`/admin/producto/${id}`);
-    // const default_imagen = import.meta.env.VITE_IMAGES_URL+data.data[0].default_imagen;
     return data ;
 }
 
-// "id": 101,
-// "nombre": "Aceituna S. Extra Negra",
-// "nombre_corto": "Super Extra Negra",
-// "unidad": "kg",
-// "tipo": "Aceitunas",
-// "stock_minimo": "120.000",
-// "disponible": 1,
-// "temporada": "Todo el año",
-// "default_imagen": "101-1756429999.jpg"
