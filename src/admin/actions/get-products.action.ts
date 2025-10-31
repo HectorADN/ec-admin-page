@@ -1,6 +1,6 @@
+
 import { ecApi } from "@/api/ecApi"
 import type { ProductsResponse } from "@/interfaces/ProductsResponse";
-
 
 export const getProductsAction = async(): Promise<ProductsResponse> => {
 
@@ -12,10 +12,9 @@ export const getProductsAction = async(): Promise<ProductsResponse> => {
         default_imagen: `${import.meta.env.VITE_IMAGES_URL}${product.default_imagen}`
     }));
 
-    // console.log(productsWithImageUrls);
-
+    // console.log('getProductsAction',productsWithImageUrls);
     return {
         ...data,
-        data: productsWithImageUrls
+        data: productsWithImageUrls,
     };
 }

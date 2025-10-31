@@ -12,8 +12,11 @@ export const AdminProductsPage = () => {
 
   const { data, isLoading } = useProducts();
   const standartPrice = 7500;
+
+  // console.log(products);
   
   if ( isLoading ) return <CustomFullScreenLoading />;
+  if ( !data ) return <CustomFullScreenLoading />;
 
   return (
     <>
@@ -53,7 +56,7 @@ export const AdminProductsPage = () => {
           <TableBody>
 
              {
-              data?.data.map( product => (
+              data.data.map( product => (
                 (<TableRow key={product.id}>
               <TableCell className="font-bold">
                 <Link to={`/admin/products/${product.id}`}

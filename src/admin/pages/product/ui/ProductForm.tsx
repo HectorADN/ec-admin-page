@@ -40,7 +40,7 @@ export const ProductForm = ({title, subTitle, product, onSubmit, isPending }: Pr
   const { isLoading, isError, data } = useCategories();
   const categories = data?.data;
 
-  console.log('Producto llegado', {product});
+  // console.log('Producto llegado', {product});
 
   const [dragActive, setDragActive] = useState(false);
   const { 
@@ -131,6 +131,7 @@ export const ProductForm = ({title, subTitle, product, onSubmit, isPending }: Pr
                   </label>
                   <select
                     {...register('categorias_id')}
+                    defaultValue={product.categorias_id}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   >
                     {
@@ -138,7 +139,7 @@ export const ProductForm = ({title, subTitle, product, onSubmit, isPending }: Pr
                       <option 
                         key={category.id} 
                         value={category.id}
-                        selected={category.id === product.categorias_id}
+                        // selected={category.id === product.categorias_id}
                         >
                           {category.nombre}
                       </option>)

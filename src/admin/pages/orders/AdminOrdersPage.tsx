@@ -8,6 +8,14 @@ import { currencyFormatter } from '../../../lib/currency-formatter';
 import { useOrders } from "@/admin/hooks/useOrders";
 
 
+// const estadoPedido = [
+//   {'Pendiente' : ' text-red-600 '},
+//   {'Abonado' : ' text-yellow-600 '},
+//   {'Pagado' : ' text-green-700 '},
+// ]
+
+
+
 export const AdminOrdersPage = () => {
 
   const { data, isLoading } = useOrders();
@@ -61,7 +69,9 @@ export const AdminOrdersPage = () => {
                         <TableCell>{ order.proveedor.nombre }</TableCell>
                         <TableCell>{ order.fecha.toString() }</TableCell>
                         <TableCell>{ order.fecha_recepcion?.toString() }</TableCell>
-                        <TableCell>{ order.estado }</TableCell>
+                        <TableCell>
+                          <span>{ order.estado }</span>
+                        </TableCell>
                         <TableCell className="text-right">{currencyFormatter(order.total)}</TableCell>
                         <TableCell className="text-right">
                             <Link to={`/admin/orders/${order.id}`}

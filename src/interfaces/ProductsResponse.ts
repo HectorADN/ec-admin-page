@@ -7,3 +7,4 @@ export interface ProductsResponse {
     error:   boolean;
     data:    Product[];
 }
+

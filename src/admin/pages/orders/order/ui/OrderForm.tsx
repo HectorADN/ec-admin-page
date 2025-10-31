@@ -92,6 +92,7 @@ export const OrderForm = ({title, subTitle, order }: Props) => {
                   </label>
                   <select
                     {...register('proveedores_id')}
+                    defaultValue={order.proveedores_id}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   >
                     <option value=''>Seleccione</option>
@@ -100,7 +101,6 @@ export const OrderForm = ({title, subTitle, order }: Props) => {
                       <option 
                         key={supplier.id} 
                         value={supplier.id}
-                        selected={supplier.id === order.proveedores_id}
                         >
                           {supplier.nombre}
                       </option>)
