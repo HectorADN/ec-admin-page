@@ -21,7 +21,7 @@ export const AdminSuppliersPage = () => {
         />
 
         <div className="flex justify-end mb-10 gap-4">
-          <Link to='/admin/products/new'>
+          <Link to='/admin/suppliers/new'>
             <Button>
               <PlusIcon /> Nuevo proveedor
             </Button>

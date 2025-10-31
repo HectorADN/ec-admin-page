@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 
 import { AdminTitle } from "@/admin/components/AdminTitle";
 import { Button } from "@/components/ui/button";
-import { X, SaveAll, Tag, Upload, Plus } from "lucide-react";
-import { Form, Link, Navigate } from "react-router";
+import { X, SaveAll, Upload } from "lucide-react";
+import { Link, Navigate } from "react-router";
 import { ItemsVentaOfProduct } from "./ItemsVentaOfProduct";
 import type { Product } from "@/interfaces/Product.interface";
 import { useCategories } from "@/admin/hooks/useCategories";
@@ -16,8 +16,10 @@ interface Props {
     title: string;
     subTitle: string,
     product: Product,
+    isPending: boolean,
 
     // Methods
+    onSubmit: (productLike: Partial<Product>) => Promise<void>,
 };
 
 // protected $fillable = [
@@ -33,10 +35,12 @@ interface Props {
 //     'categorias_id',
 //  ];
 
-export const ProductForm = ({title, subTitle, product }: Props) => {
+export const ProductForm = ({title, subTitle, product, onSubmit, isPending }: Props) => {
 
   const { isLoading, isError, data } = useCategories();
   const categories = data?.data;
+
+  console.log('Producto llegado', {product});
 
   const [dragActive, setDragActive] = useState(false);
   const { 
@@ -85,9 +89,6 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
     console.log(files);
   };
 
-  const onSubmit = (productLike: Product) => {
-    console.log('onSubmit', productLike);
-  }
 
   if ( isError ) return <Navigate to="/admin/products" />;
   if ( isLoading ) return <CustomFullScreenLoading />;
@@ -98,14 +99,14 @@ export const ProductForm = ({title, subTitle, product }: Props) => {
       <div className="flex justify-between items-center">
         <AdminTitle title={title} subtitle={subTitle} />
         <div className="flex justify-end mb-10 gap-4">
-          <Button variant="outline">
+          <Button variant="outline" type="button">
             <Link to="/admin/products" className="flex items-center gap-2">
               <X className="w-4 h-4" />
               Cancelar
             </Link>
           </Button>
 
-          <Button>
+          <Button type="submit" disabled={isPending}>
             <SaveAll className="w-4 h-4" />
             Guardar cambios
           </Button>

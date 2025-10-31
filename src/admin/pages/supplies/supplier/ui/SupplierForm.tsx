@@ -1,11 +1,12 @@
+
 import { useState } from "react";
 
 import { useForm } from 'react-hook-form';
 
 import { AdminTitle } from "@/admin/components/AdminTitle";
 import { Button } from "@/components/ui/button";
-import { X, SaveAll, Tag, Upload, Plus } from "lucide-react";
-import { Form, Link, Navigate } from "react-router";
+import { X, SaveAll, Upload } from "lucide-react";
+import { Link } from "react-router";
 import { cn } from "@/lib/utils";
 import type { Supplier } from "@/interfaces/Supplier.interface";
 
@@ -36,9 +37,9 @@ export const SupplierForm = ({title, subTitle, supplier }: Props) => {
     register, 
     handleSubmit, 
     formState: {errors},
-    getValues,
-    setValue,
-    watch,
+    // getValues,
+    // setValue,
+    // watch,
    } = useForm({
     defaultValues: supplier
   });
@@ -234,7 +235,7 @@ export const SupplierForm = ({title, subTitle, supplier }: Props) => {
                                 'bg-red-100': errors.rut,
                               }
                             )}
-                            placeholder="Unidad del producto"
+                            placeholder="Rut del proveedor"
                         />
                         {
                           errors.rut && (
@@ -288,7 +289,7 @@ export const SupplierForm = ({title, subTitle, supplier }: Props) => {
                                 'bg-red-100': errors.fono,
                               }
                             )}
-                            placeholder="Temporada del producto"
+                            placeholder="Fono proveedor"
                         />
                         {
                           errors.fono && (

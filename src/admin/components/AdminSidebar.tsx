@@ -40,7 +40,7 @@ export const AdminSidebar: React.FC<SidebarProps> = ({
     { icon: Users, label: 'Usuarios', to: '/admin/users' },
     { icon: Users, label: 'Proveedores', to: '/admin/suppliers' },
     { icon: CardSimIcon, label: 'Medio Pagos', to: '/admin/mediospagos' },
-    { icon: ShoppingCart, label: 'Pedidos' },
+    { icon: ShoppingCart, label: 'Pedidos', to: '/admin/orders' },
     { icon: FileText, label: 'Reportes' },
     { icon: Bell, label: 'Notificaciones' },
     { icon: Settings, label: 'Ajustes' },

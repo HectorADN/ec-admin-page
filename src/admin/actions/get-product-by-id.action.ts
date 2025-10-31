@@ -8,7 +8,7 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
 
     if ( id === 'new' ) {
         return {
-            // "id": '',
+            "id": 'new',
             "nombre": "",
             "nombre_corto": "",
             "unidad": "",
@@ -16,7 +16,7 @@ export const getProductByIdAction = async (id: string ): Promise<Product> => {
             "stock_minimo": 0,
             "disponible": false,
             "temporada": "",
-            "default_imagen": "",
+            // "default_imagen": "no-image.jpg",
         } as unknown as Product;
     }
 

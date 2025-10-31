@@ -16,6 +16,8 @@ import { AdminCategoriesPage } from "./admin/pages/categories/AdminCategoriesPag
 import { AdminCategoryPage } from "./admin/pages/categories/category/AdminCategoryPage";
 import { AdminSupplierPage } from "./admin/pages/supplies/supplier/AdminSupplierPage";
 import { AdminEmpresaPagoPage } from "./admin/pages/empresapagos/empresapago/AdminEmpresaPagoPage";
+import { AdminOrdersPage } from "./admin/pages/orders/AdminOrdersPage";
+import { AdminOrderPage } from "./admin/pages/orders/order/AdminOrderPage";
 // import AdminLayout from "./admin/layouts/AdminLayout";
 
 
@@ -68,6 +70,14 @@ export const appRouter = createBrowserRouter([
             {
                 path: 'products',
                 element: <AdminProductsPage />
+            },
+            {
+                path: 'orders',
+                element: <AdminOrdersPage />
+            },
+            {
+                path: 'orders/:id',
+                element: <AdminOrderPage />
             },
             {
                 path: 'products/:id',

@@ -34,7 +34,7 @@ export const AdminEmpresaPagosPage = () => {
 
 
       <Table className="bg-white p-10 shadow-xs border border-gray-200 mb-10">
-        <TableCaption>Listado de productos</TableCaption>
+        <TableCaption>Listado de medios de pago</TableCaption>
         
           <TableHeader>
             <TableRow>
